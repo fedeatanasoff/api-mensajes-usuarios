@@ -1,0 +1,22 @@
+{
+  "name": "api-chat",
+  "version": "1.0.0",
+  "description": "api-mensajes",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app"
+  },
+  "keywords": [],
+  "author": "fedeatanasoff",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "colors": "^1.3.3",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0"
+  }
+}
