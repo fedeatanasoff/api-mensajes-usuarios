@@ -22,6 +22,7 @@ router.get("/api/v1/usuarios/usuarios", (req, res) => {
     if (err) {
       return res.status(400).json({
         ok: false,
+        message: "error al obtener los usuarios",
         error: err
       });
     }
@@ -33,7 +34,7 @@ router.get("/api/v1/usuarios/usuarios", (req, res) => {
   });
 });
 
-// * mostrar por id
+// * get por id
 router.get("/api/v1/usuarios/usuario_id/:id", (req, res) => {
   const id = req.params.id;
   console.log(`Accediendo a la informacion del usuario id: ${id}`);
@@ -74,7 +75,7 @@ router.get("/api/v1/usuarios/usuario_id/:id", (req, res) => {
   // res.end();
 });
 
-// * mostrar por email
+// * get por email
 router.get("/api/v1/usuarios/usuario_email/:email", (req, res) => {
   const email = req.params.email;
   console.log(`Accediendo a la informacion del usuario id: ${email}`);
@@ -136,7 +137,7 @@ router.post("/api/v1/usuarios/crear_usuario", (req, res) => {
       if (err) {
         return res.status(400).json({
           ok: false,
-          message: "error al realizar la peticion",
+          message: "error al realizar al insertar nuevo usuario",
           error: err
         });
       }
@@ -145,6 +146,7 @@ router.post("/api/v1/usuarios/crear_usuario", (req, res) => {
         id: data.insertId,
         nombre,
         nombre_usuario,
+        email,
         creado_en: fecha_registro,
         actualizado_en: fecha_registro,
         id_status: 1
@@ -179,11 +181,17 @@ router.put("/api/v1/usuarios/usuario_status/:id", (req, res) => {
           error: err
         });
       }
-      console.log(data);
-      res.json({
-        ok: true,
-        mensaje: "se ha editado correctamente estado del usuario"
-      });
+
+      if (data.affectedRows === 0) {
+        return res
+          .status(404)
+          .json({ ok: true, message: "usuario no encontrado", usuario: {} });
+      } else {
+        res.json({
+          ok: true,
+          mensaje: "se ha editado correctamente estado del usuario"
+        });
+      }
     }
   );
 });
@@ -212,10 +220,17 @@ router.put("/api/v1/usuarios/usuario/:id", (req, res) => {
           error: err
         });
       }
-      res.json({
-        ok: true,
-        mensaje: "se ha editado correctamente el nombre de usuario"
-      });
+
+      if (data.affectedRows === 0) {
+        return res
+          .status(404)
+          .json({ ok: true, message: "usuario no encontrado", usuario: {} });
+      } else {
+        res.json({
+          ok: true,
+          mensaje: "se ha editado correctamente el nombre de usuario"
+        });
+      }
     }
   );
 });
@@ -235,10 +250,16 @@ router.delete("/api/v1/usuarios/usuario/:id", (req, res) => {
       });
     }
 
-    res.json({
-      ok: true,
-      mensaje: "se ha eliminado correctamente el usuario"
-    });
+    if (data.affectedRows === 0) {
+      return res
+        .status(404)
+        .json({ ok: true, message: "usuario no encontrado", usuario: {} });
+    } else {
+      res.json({
+        ok: true,
+        mensaje: "se ha eliminado correctamente el usuario "
+      });
+    }
   });
 });
 
@@ -308,10 +329,17 @@ router.put("/api/v1/usuarios/status_usuario/:id", (req, res) => {
           error: err
         });
       }
-      res.json({
-        ok: true,
-        mensaje: "se ha editado correctamente el registro"
-      });
+
+      if (data.affectedRows === 0) {
+        return res
+          .status(404)
+          .json({ ok: true, message: "usuario no encontrado", usuario: {} });
+      } else {
+        res.json({
+          ok: true,
+          mensaje: "se ha editado correctamente el registro"
+        });
+      }
     }
   );
 });
@@ -332,10 +360,16 @@ router.delete("/api/v1/usuarios/status_usuario/:id", (req, res) => {
       });
     }
 
-    res.json({
-      ok: true,
-      message: "se ha eliminado correctamente el usuario"
-    });
+    if (data.affectedRows === 0) {
+      return res
+        .status(404)
+        .json({ ok: true, message: "usuario no encontrado", usuario: {} });
+    } else {
+      res.json({
+        ok: true,
+        message: "se ha eliminado correctamente el usuario"
+      });
+    }
   });
 });
 
