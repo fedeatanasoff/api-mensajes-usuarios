@@ -32,10 +32,15 @@ CREATE TABLE status_mensajes(
     descripcion VARCHAR(20) NOT NULL
 );
 
+-- casos de prueba
 INSERT INTO usuarios (nombre, nombre_usuario, email, creado_en, actualizado_en, id_status) VALUES ("federico", "fd", "fde@fede.com", "2019-03-15 01:14:21","2019-03-15", 1);
+INSERT INTO usuarios (nombre, nombre_usuario, email, creado_en, actualizado_en, id_status) VALUES ("oliver", "atom", "oliver@atom.com", "2019-03-15 01:14:21","2019-03-15", 1);
+INSERT INTO usuarios (nombre, nombre_usuario, email, creado_en, actualizado_en, id_status) VALUES ("steve", "hyuga", "steve@hyuga.com", "2019-03-15 01:14:21","2019-03-15", 1);
+INSERT INTO usuarios (nombre, nombre_usuario, email, creado_en, actualizado_en, id_status) VALUES ("tom", "misaki", "tom@misaki.com", "2019-03-15 01:14:21","2019-03-15", 1);
 INSERT INTO usuarios (nombre, nombre_usuario, email, creado_en, actualizado_en, id_status) VALUES ("lautaro", "laucha_ar", "laucha@lg.com", "2019-03-19 21:14:21","2019-03-15", 1);
 INSERT INTO status_usuarios VALUES (1, "conectado");
 INSERT INTO status_usuarios VALUES (2, "desconectado");
 INSERT INTO status_mensajes VALUES (1, "leido");
 INSERT INTO status_mensajes VALUES (2, "no leido");
 INSERT INTO mensajes (cuerpo, creado_en, id_usuario, id_status) VALUES ("cuerpo de mensaje", "2019-03-15 01:14:21", 1, 1);
+INSERT INTO mensajes (cuerpo, creado_en, id_usuario, id_status) VALUES ("otro mensaje", "2019-03-15 01:14:21", 1, 1);
