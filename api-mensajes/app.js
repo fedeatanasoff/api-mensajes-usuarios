@@ -26,5 +26,5 @@ app.use(router);
 
 // * SERVIDOR
 app.listen(2100, () => {
-  console.log("Servidor API USUARIOS corriendo en puerto 2100".bold);
+  console.log("Servidor API MENSAJES corriendo en puerto 2100".bold);
 });

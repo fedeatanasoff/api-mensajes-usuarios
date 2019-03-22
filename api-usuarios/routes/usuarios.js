@@ -20,7 +20,7 @@ router.get("/api/v1/usuarios/usuarios", (req, res) => {
   const queryString = "SELECT * FROM usuarios";
   connection.query(queryString, (err, data) => {
     if (err) {
-      res.status(400).json({
+      return res.status(400).json({
         ok: false,
         error: err
       });
