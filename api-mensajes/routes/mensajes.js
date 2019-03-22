@@ -86,7 +86,7 @@ router_mensajes.get("/api/v1/mensajes/status_mensajes", (req, res) => {
         error: err
       });
     }
-    console.table(fields);
+    console.table(data);
     res.json({
       ok: true,
       data
@@ -133,10 +133,17 @@ router_mensajes.put("/api/v1/mensajes/status_mensaje/:id", (req, res) => {
           error: err
         });
       }
-      res.json({
-        ok: true,
-        mensaje: "se ha editado correctamente el status mensaje"
-      });
+
+      if (data.affectedRows === 0) {
+        return res
+          .status(404)
+          .json({ ok: true, message: "usuario no encontrado", usuario: {} });
+      } else {
+        res.json({
+          ok: true,
+          mensaje: "se ha editado correctamente el status mensaje"
+        });
+      }
     }
   );
 });
@@ -157,10 +164,16 @@ router_mensajes.delete("/api/v1/mensajes/status_mensaje/:id", (req, res) => {
       });
     }
 
-    res.json({
-      ok: true,
-      message: "se ha eliminado correctamente el status mensaje"
-    });
+    if (data.affectedRows === 0) {
+      return res
+        .status(404)
+        .json({ ok: true, message: "usuario no encontrado", usuario: {} });
+    } else {
+      res.json({
+        ok: true,
+        message: "se ha eliminado correctamente el status mensaje"
+      });
+    }
   });
 });
 
