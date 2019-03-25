@@ -311,7 +311,7 @@ router.post("/api/v1/usuarios/crear_status_usuario", (req, res) => {
 });
 
 // * editar status_usuario
-router.put("/api/v1/usuarios/status_usuario/:id", (req, res) => {
+router.put("/api/v1/usuarios/status_usuarios", (req, res) => {
   const id = req.params.id;
   const { id_status, descripcion } = req.body;
 

@@ -15,7 +15,7 @@ CREATE TABLE usuarios(
 );
 
 CREATE TABLE status_usuarios(
-    id_status INT NOT NULL UNIQUE,
+    id_status INT UNSIGNED NOT NULL UNIQUE,
     descripcion VARCHAR(20) NOT NULL
 );
 
